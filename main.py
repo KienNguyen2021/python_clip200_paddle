@@ -19,8 +19,8 @@ ball = Ball()
 screen.listen()
 screen.onkey(r_paddle.go_up, "Up")
 screen.onkey(r_paddle.go_down, "Down")
-screen.onkey(l_paddle.go_up, "W")
-screen.onkey(l_paddle.go_down, "S")
+screen.onkey(l_paddle.go_up, "w")
+screen.onkey(l_paddle.go_down, "s")
 
 
 # to make the game keeping updated and refreshed every single time, use While Loop:
@@ -39,6 +39,15 @@ while game_is_on:
 
     if ball.distance(r_paddle) < 50 and ball.xcor() > 340 or ball.distance(l_paddle) < 50 and ball.xcor() < -340:
         ball.bounce_x()
+
+    # detect R paddle misses:
+    if ball.xcor()>380:
+        ball.reset_position()
+
+    #Detect L paddle misses:
+
+    if ball.xcor() <-380 :
+        ball.reset_position()
 
 
 screen.exitonclick()
